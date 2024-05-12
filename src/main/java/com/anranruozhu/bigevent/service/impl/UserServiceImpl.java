@@ -37,4 +37,18 @@ public class UserServiceImpl implements UserService {
             return Result.success("注册成功");
         }
     }
+
+    @Override
+    public Result login(String username, String password) {
+        User u = userMapper.findByUsername(username);
+        if (u == null) {
+            return Result.error("用户名不存在");
+        }
+        if (Md5Util.checkPassword(password, u.getPassword())) {
+            return Result.success(u);
+        } else {
+            return Result.error("密码错误");
+        }
+
+    }
 }

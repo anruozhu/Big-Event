@@ -10,4 +10,6 @@ public interface UserService {
     User findByUsername(String username);
     //进行注册服务
     Result register(String username, String password);
+
+    Result login(String username, String password);
 }
