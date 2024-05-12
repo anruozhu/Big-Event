@@ -4,9 +4,13 @@ import com.anranruozhu.bigevent.mapper.UserMapper;
 import com.anranruozhu.bigevent.pojo.Result;
 import com.anranruozhu.bigevent.pojo.User;
 import com.anranruozhu.bigevent.service.UserService;
+import com.anranruozhu.bigevent.utils.JWTUtil;
 import com.anranruozhu.bigevent.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author anranruozhu
@@ -26,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result register(String username, String password) {
+    public Result<String> register(String username, String password) {
         if (userMapper.findByUsername(username) != null) {
             return Result.error("用户名已存在");
         } else {
@@ -39,13 +43,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result login(String username, String password) {
+    public Result<String> login(String username, String password) {
         User u = userMapper.findByUsername(username);
         if (u == null) {
             return Result.error("用户名不存在");
         }
         if (Md5Util.checkPassword(password, u.getPassword())) {
-            return Result.success(u);
+            //生成JWT
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", u.getId());
+            claims.put("username", u.getUsername());
+            String token = JWTUtil.genToken(claims);
+            return Result.success(token);
         } else {
             return Result.error("密码错误");
         }
