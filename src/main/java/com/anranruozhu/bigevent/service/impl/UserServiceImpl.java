@@ -1,6 +1,7 @@
 package com.anranruozhu.bigevent.service.impl;
 
 import com.anranruozhu.bigevent.mapper.UserMapper;
+import com.anranruozhu.bigevent.pojo.Result;
 import com.anranruozhu.bigevent.pojo.User;
 import com.anranruozhu.bigevent.service.UserService;
 import com.anranruozhu.bigevent.utils.Md5Util;
@@ -15,20 +16,25 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class UserServiceImpl implements UserService {
+  @Autowired
+  private UserMapper userMapper;
 
-    @Autowired
-    private UserMapper userMapper;
-    @Override
+  @Override
     public User findByUsername(String username) {
         User u=userMapper.findByUsername(username);
         return u;
     }
 
     @Override
-    public void register(String username, String password) {
-        //对密码进行加密处理
-        String md5Pwd=Md5Util.getMD5String(password);
-        //添加到数据库
-        userMapper.add(username,md5Pwd);
+    public Result register(String username, String password) {
+            if(userMapper.findByUsername(username)!=null){
+                return Result.error("用户名已存在");
+            }else{
+                //进行加密
+                String md5Pwd=Md5Util.getMD5String(password);
+                //添加到数据库
+                userMapper.add(username,md5Pwd);
+                return Result.success("注册成功");
+            }
     }
 }
