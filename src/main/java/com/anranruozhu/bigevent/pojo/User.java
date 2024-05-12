@@ -1,6 +1,7 @@
 package com.anranruozhu.bigevent.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ public class User {
     @JsonIgnore//让spring在将当前对象转换为jason对象时忽略该字段
     private String password;//密码
     private String nickname;//昵称
+    @Email
     private String email;//邮箱
     private String userPic;//用户头像地址
     private LocalDateTime createTime;//创建时间

@@ -9,6 +9,7 @@ import com.anranruozhu.bigevent.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +59,15 @@ public class UserServiceImpl implements UserService {
         } else {
             return Result.error("密码错误");
         }
+    }
 
+    @Override
+    public Result<String> update(User user) {
+        try{
+            userMapper.update(user);
+            return Result.success("更新成功");
+        }catch (Exception e){
+            return Result.error("更新失败");
+        }
     }
 }

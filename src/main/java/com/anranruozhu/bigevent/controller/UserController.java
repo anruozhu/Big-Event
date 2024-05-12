@@ -42,4 +42,9 @@ public class UserController {
         String username=(String)map.get("username");
         return Result.success(userService.findByUsername(username));
     }
+    @PutMapping("/update")
+    public Result<String> update(@RequestBody @Validated User user) {
+
+        return userService.update(user);
+    }
 }

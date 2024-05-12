@@ -12,4 +12,6 @@ public interface UserService {
     Result<String> register(String username, String password);
 
     Result<String> login(String username, String password);
+
+    Result<String> update(User user);
 }

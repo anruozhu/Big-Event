@@ -9,4 +9,6 @@ public interface UserMapper {
     User findByUsername(String username);
 
     void add(String username, String password);
+
+    void update(User user);
 }
