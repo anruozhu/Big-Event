@@ -1,9 +1,14 @@
 package com.anranruozhu.bigevent.controller;
 
 import com.anranruozhu.bigevent.pojo.Result;
+import com.anranruozhu.bigevent.utils.JWTUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * @author anranruozhu
@@ -15,7 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/article")
 public class ArticleController {
     @GetMapping("/list")
-    public Result<String> List(){
-        return Result.success("所有的文章数据");
+    public Result<String> List() {
+//        try{
+//            Map<String,Object> claims= JWTUtil.parseToken(token);
+//            return Result.success(claims.get("username").toString());
+//        }catch(Exception e){
+//            response.setStatus(401);
+//            return Result.error("未登录");
+//        }
+        return Result.success("文章数据");
     }
 }

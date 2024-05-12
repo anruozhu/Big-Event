@@ -3,12 +3,13 @@ package com.anranruozhu.bigevent.controller;
 import com.anranruozhu.bigevent.pojo.Result;
 import com.anranruozhu.bigevent.pojo.User;
 import com.anranruozhu.bigevent.service.UserService;
+import com.anranruozhu.bigevent.utils.JWTUtil;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * @author anranruozhu
@@ -31,5 +32,10 @@ public class UserController {
     public Result<String> login(@Pattern(regexp = "^\\S{5,16}$")String username,@Pattern(regexp = "^\\S{5,16}$")String password) {
         return userService.login(username, password);
     }
-
+    @GetMapping("userinfo")
+    public Result<User> userinfo(@RequestHeader(name="Authorization")String token) {
+        Map<String, Object>map=JWTUtil.parseToken(token);
+        String username=(String)map.get("username");
+        return Result.success(userService.findByUsername(username));
+    }
 }
