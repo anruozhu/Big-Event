@@ -11,4 +11,8 @@ public interface UserMapper {
     void add(String username, String password);
 
     void update(User user);
+
+    void updateAvatar(String avatarUrl,Integer id);
+
+    void updatePwd(Integer id, String password);
 }

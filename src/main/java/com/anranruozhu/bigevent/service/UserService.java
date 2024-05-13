@@ -4,6 +4,8 @@ import com.anranruozhu.bigevent.pojo.Result;
 import com.anranruozhu.bigevent.pojo.User;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 
 public interface UserService {
     //根据用户名查询用户
@@ -14,4 +16,8 @@ public interface UserService {
     Result<String> login(String username, String password);
 
     Result<String> update(User user);
+
+    Result<String> updateAvatar(String avatarUrl);
+
+    Result updatePwd(Map<String, String> params);
 }
