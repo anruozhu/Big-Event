@@ -10,4 +10,6 @@ public interface CategoryMapper {
     void add(Category category);
 
     List<Category> list(Integer userId);
+
+    Category findById(Integer id, Integer userId);
 }

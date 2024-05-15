@@ -9,4 +9,6 @@ public interface CategoryService {
     Result<String> add(Category category);
 
     Result<List<Category>> list();
+
+    Result<Category> findById(Integer id);
 }

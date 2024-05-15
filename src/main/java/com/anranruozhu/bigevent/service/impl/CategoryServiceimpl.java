@@ -45,4 +45,16 @@ public class CategoryServiceimpl implements CategoryService {
             return Result.error("获取失败");
         }
     }
+
+    @Override
+    public Result<Category> findById(Integer id) {
+        try{
+            Map<String,Object> params =ThreadLocalUtil.get();
+            Integer userId=(Integer) params.get("id");
+            Category category = categoryMapper.findById(id,userId);
+            return Result.success(category);
+        }catch(Exception e){
+            return Result.error("获取失败");
+        }
+    }
 }

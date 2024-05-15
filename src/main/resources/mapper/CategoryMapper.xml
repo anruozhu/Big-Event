@@ -11,4 +11,8 @@
     <select id="list" resultType="com.anranruozhu.bigevent.pojo.Category">
     select*from category where create_user = #{userId}
     </select>
+
+    <select id="findById" resultType="com.anranruozhu.bigevent.pojo.Category">
+        SELECT* FROM category where id=#{id} and create_user=#{userId}
+    </select>
 </mapper>
