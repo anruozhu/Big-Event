@@ -33,7 +33,10 @@ public class CategoryController {
     public Result<Category> detail(Integer id){
             return categoryService.findById(id);
         }
-
+    @PutMapping
+    public Result<String> update(@RequestBody @Validated Category category){
+        return categoryService.update(category);
+    }
 
 
 }

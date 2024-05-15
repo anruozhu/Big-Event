@@ -15,4 +15,9 @@
     <select id="findById" resultType="com.anranruozhu.bigevent.pojo.Category">
         SELECT* FROM category where id=#{id} and create_user=#{userId}
     </select>
+
+    <update id="update">
+        update category set category_name=#{categoryName},category_alias=#{categoryAlias},update_time=now()
+        where id=#{id} and create_user=#{createUser}
+    </update>
 </mapper>

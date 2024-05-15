@@ -57,4 +57,17 @@ public class CategoryServiceimpl implements CategoryService {
             return Result.error("获取失败");
         }
     }
+
+    @Override
+    public Result<String> update(Category category) {
+        try{
+            Map<String,Object> params =ThreadLocalUtil.get();
+            Integer userId=(Integer) params.get("id");
+            category.setCreateUser(userId);
+            categoryMapper.update(category);
+            return Result.success("修改成功");
+        }catch(Exception e){
+            return Result.error("修改失败");
+        }
+    }
 }

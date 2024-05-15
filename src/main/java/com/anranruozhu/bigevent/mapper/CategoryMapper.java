@@ -12,4 +12,6 @@ public interface CategoryMapper {
     List<Category> list(Integer userId);
 
     Category findById(Integer id, Integer userId);
+
+    void update(Category category);
 }
