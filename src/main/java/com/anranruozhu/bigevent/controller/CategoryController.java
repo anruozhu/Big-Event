@@ -22,7 +22,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
     @PostMapping
-    public Result<String> add(@RequestBody @Validated Category category){
+    public Result<String> add(@RequestBody @Validated(Category.Add.class) Category category){
         return categoryService.add(category);
     }
     @GetMapping
@@ -34,7 +34,7 @@ public class CategoryController {
             return categoryService.findById(id);
         }
     @PutMapping
-    public Result<String> update(@RequestBody @Validated Category category){
+    public Result<String> update(@RequestBody @Validated(Category.Update.class) Category category){
         return categoryService.update(category);
     }
 
