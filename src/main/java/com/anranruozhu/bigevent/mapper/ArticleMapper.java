@@ -3,6 +3,8 @@ package com.anranruozhu.bigevent.mapper;
 import com.anranruozhu.bigevent.pojo.Article;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @author anranruozhu
  * @ClassName ArticleMapper
@@ -12,4 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ArticleMapper {
     void add(Article article);
+    List<Article> list(Integer userId, Integer categoryId, String state);
 }

@@ -1,6 +1,6 @@
 package com.anranruozhu.bigevent.anno;
 
-import com.anranruozhu.validation.StateValidation;
+import com.anranruozhu.bigevent.validation.StateValidation;
 import jakarta.validation.Constraint;
 
 import jakarta.validation.Payload;

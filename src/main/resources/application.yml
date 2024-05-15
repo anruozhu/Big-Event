@@ -7,3 +7,15 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  configuration-properties:
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    reasonable: true
+logging:
+  level:
+    com.anranruozhu.bigevent.mapper: DEBUG # 替换为你的Mapper接口所在的包路径
+    spring.datasource: DEBUG```
+##启动pagehelper的合理化判定
+pagehelper:
+  reasonable: true

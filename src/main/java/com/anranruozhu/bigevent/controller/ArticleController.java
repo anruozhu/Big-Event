@@ -1,6 +1,7 @@
 package com.anranruozhu.bigevent.controller;
 
 import com.anranruozhu.bigevent.pojo.Article;
+import com.anranruozhu.bigevent.pojo.PageBean;
 import com.anranruozhu.bigevent.pojo.Result;
 import com.anranruozhu.bigevent.service.ArticleService;
 import com.anranruozhu.bigevent.utils.JWTUtil;
@@ -22,16 +23,12 @@ import java.util.Map;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
-    @GetMapping("/list")
-    public Result<String> List() {
-//        try{
-//            Map<String,Object> claims= JWTUtil.parseToken(token);
-//            return Result.success(claims.get("username").toString());
-//        }catch(Exception e){
-//            response.setStatus(401);
-//            return Result.error("未登录");
-//        }
-        return Result.success("文章数据");
+    @GetMapping
+    public Result<PageBean<Article>> List(Integer pageNum,
+                                          Integer pageSize,
+                                          @RequestParam(required = false) Integer categoryId,
+                                          @RequestParam(required = false) String state) {
+        return articleService.list(pageNum, pageSize, categoryId, state);
     }
     @PostMapping
     public Result<String> add(@RequestBody @Validated Article article) {

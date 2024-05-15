@@ -7,4 +7,17 @@
         insert into article(title, content, cover_img, state, category_id, create_user, create_time, update_time)
             values (#{title},#{content},#{coverImg},#{state},#{categoryId},#{createUser},now(),now())
     </insert>
+<!--动态sql-->
+    <select id="list" resultType="com.anranruozhu.bigevent.pojo.Article">
+        select* from article
+        <where>
+           <if test="categoryId!=null">
+               category_id = #{categoryId}
+           </if>
+            <if test="state!=null and state!=''">
+                and state= #{state}
+            </if>
+            and create_user =#{userId}
+        </where>
+    </select>
 </mapper>

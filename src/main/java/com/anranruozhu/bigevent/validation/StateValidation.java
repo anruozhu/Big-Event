@@ -1,4 +1,4 @@
-package com.anranruozhu.validation;
+package com.anranruozhu.bigevent.validation;
 
 import com.anranruozhu.bigevent.anno.State;
 import jakarta.validation.ConstraintValidator;
