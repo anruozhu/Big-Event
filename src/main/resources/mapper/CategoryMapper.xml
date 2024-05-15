@@ -20,4 +20,7 @@
         update category set category_name=#{categoryName},category_alias=#{categoryAlias},update_time=now()
         where id=#{id} and create_user=#{createUser}
     </update>
+    <delete id="delete">
+        delete from category where id=#{id}
+    </delete>
 </mapper>

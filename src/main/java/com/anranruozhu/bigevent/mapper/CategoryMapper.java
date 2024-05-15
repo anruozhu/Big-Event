@@ -14,4 +14,6 @@ public interface CategoryMapper {
     Category findById(Integer id, Integer userId);
 
     void update(Category category);
+
+    void delete(Integer id);
 }

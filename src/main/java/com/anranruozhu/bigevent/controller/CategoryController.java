@@ -37,6 +37,9 @@ public class CategoryController {
     public Result<String> update(@RequestBody @Validated(Category.Update.class) Category category){
         return categoryService.update(category);
     }
-
+    @DeleteMapping
+    public Result<String> delete(Integer id){
+        return categoryService.delete(id);
+    }
 
 }

@@ -13,4 +13,6 @@ public interface CategoryService {
     Result<Category> findById(Integer id);
 
     Result<String> update(Category category);
+
+    Result<String> delete(Integer id);
 }

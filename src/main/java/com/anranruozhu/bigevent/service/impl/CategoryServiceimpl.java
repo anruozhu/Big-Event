@@ -70,4 +70,14 @@ public class CategoryServiceimpl implements CategoryService {
             return Result.error("修改失败");
         }
     }
+
+    @Override
+    public Result<String> delete(Integer id) {
+        try{
+            categoryMapper.delete(id);
+            return Result.success("删除成功");
+        }catch(Exception e){
+        return Result.error("删除失败");
+        }
+    }
 }
